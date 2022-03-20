@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<section class="register-block">
+  <div class="container">
+     <div class="row ">
+        <div class="col register-sec">
+           <h2 class="text-center">Register Now</h2>
+           <form
+            class="register-form"
+            action=""
+            #f="ngForm"
+            novalidate
+            (ngSubmit)="f.form.valid&&onSubmit()"
+            >
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="text-uppercase">Name</label>
+
+              <input type="text" class="form-control" name="name"  id="" [(ngModel)]="formdata.name" #name="ngModel" required   >
+              <span class="text-danger" *ngIf="this.submit&&name.errors?.['required']" >
+                  Name is required.
+              </span>
+           </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="text-uppercase">Email</label>
+
+              <input type="text"  class="form-control" name="email" id="" [(ngModel)]="formdata.email" #email="ngModel" required  >
+              <span class="text-danger"  *ngIf="this.submit&&email.errors?.['required']">
+                  Email is required.
+              </span>
+           </div>
+           <div class="form-group">
+              <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+              <input  class="form-control" type="password"  name="password" id="" [(ngModel)]="formdata.password" #password="ngModel" required minlength="8" >
+              <span class="text-danger"  *ngIf="this.submit&&password.errors?.['required']">
+                  Password is required.
+              </span>
+              <span class="text-danger"  *ngIf="this.submit&&password.errors?.['minlength']">
+                Minimum length of password is 8 characters
+            </span>
+           </div>
+           <div class="form-group">
+
+              <span class="text-danger" *ngIf="this.errorMessage" >
+                 <p [innerText]="this.errorMessage"></p>
+              </span>
+              <div  class="text-center" *ngIf="this.loading">
+                <div class="spinner-border text-primary " role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+
+              <input type="submit" class="btn btn-login float-right"  value="Register" (click)="submit=true" [disabled]="this.loading"  >
+           </div>
+           <div class="clearfix"></div>
+           <div class="form-group">
+              Already have account ? Please <a href="javascript:void(0);" routerLink="/login">Login</a>
+           </div>
+
+
+           </form>
+
+
+        </div>
+
+     </div>
+
+
+  </div>
+</section>

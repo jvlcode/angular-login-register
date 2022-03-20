@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<section class="login-block">
+  <div class="container">
+      <div class="row ">
+          <div class="col login-sec">
+              <h2 class="text-center">Login Now</h2>
+              <form class="login-form" action="" #f="ngForm" novalidate (ngSubmit)="f.form.valid&&onSubmit()" >
+              <div class="form-group">
+                  <label for="exampleInputEmail1" class="text-uppercase">Email</label>
+                  <input type="email"  class="form-control" name="email"  id="" placeholder="email" [(ngModel)]="formdata.email" #email="ngModel" required>
+                  <span class="text-danger" *ngIf="this.submit&&email.errors?.['required']" >
+                      Email is required.
+                  </span>
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+                  <input  class="form-control" type="password"  name="password" placeholder="password" id="" [(ngModel)]="formdata.password" #password="ngModel" required >
+                  <span class="text-danger" *ngIf="this.submit&&password.errors?.['required']">
+                      Password is required.
+                  </span>
+              </div>
+              <div class="form-group">
+                  <div  class="text-center" *ngIf="this.loading">
+                      <div class="spinner-border text-primary " role="status">
+                      <span class="sr-only">Loading...</span>
+                      </div>
+                  </div>
+                  <span class="text-danger" *ngIf="this.errorMessage" >
+                  <p [innerText]="this.errorMessage"></p>
+                  </span>
+                  <input  type="submit" class="btn btn-login float-right" [disabled]="this.loading"  value="Login" (click)="submit=true">
+              </div>
+              <div class="clearfix"></div>
+              <div class="form-group">
+              Create new account ? Please <a  href="javascript:void(0);" routerLink="/register">Register</a>
+              </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</section>
